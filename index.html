@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect</title>
+</head>
+<body>
+    <script>
+        function getQueryParam(param) {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        let type = getQueryParam('type');
+        let url = getQueryParam('url');
+
+        if (!type || type === 'url') {
+            window.location.href = url;
+        } else if (type === 'base64') {
+            let decodedUrl = atob(url);
+            window.location.href = decodedUrl;
+        } else {
+            alert("無效的參數！");
+        }
+    </script>
+</body>
+</html>
