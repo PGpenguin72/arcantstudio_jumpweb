@@ -16,13 +16,18 @@
         let type = getQueryParam('type');
         let url = getQueryParam('url');
 
-        if (!type || type === 'url') {
+        if (!url) {
+            alert("缺少網址參數！");
+        } else if (!type || type === 'url') {
             // 如果沒有 type 或 type 是 url，直接跳轉
             window.location.href = url;
         } else if (type === 'base64') {
-            // 如果是 base64，解碼後跳轉
-            let decodedUrl = atob(url);
-            window.location.href = decodedUrl;
+            try {
+                let decodedUrl = atob(url);
+                window.location.href = decodedUrl;
+            } catch (e) {
+                alert("Base64 解碼錯誤！");
+            }
         } else {
             alert("無效的參數！");
         }
